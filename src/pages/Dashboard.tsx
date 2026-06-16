@@ -2,13 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, Badge } from '../components/ui';
 import { Zap, TrendingUp, Award, Clock } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 export const Dashboard: React.FC = () => {
+    const { user } = useAuth();
+
     const stats = [
-        { label: 'Current Level', value: '5', icon: Award, color: 'text-primary-400' },
-        { label: 'Missions Completed', value: '23', icon: TrendingUp, color: 'text-accent-400' },
+        { label: 'Current Level', value: user?.level?.toString() || '1', icon: Award, color: 'text-primary-400' },
+        { label: 'XP Points', value: user?.xp_points?.toLocaleString() || '0', icon: TrendingUp, color: 'text-accent-400' },
         { label: 'Hours Practiced', value: '48', icon: Clock, color: 'text-secondary-400' },
-        { label: 'Ether Points', value: '1,250', icon: Zap, color: 'text-yellow-400' },
+        { label: 'Ether Balance', value: user?.ether_balance?.toLocaleString() || '0', icon: Zap, color: 'text-yellow-400' },
     ];
 
     const recentMissions = [
@@ -24,7 +27,7 @@ export const Dashboard: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
             >
                 <h1 className="text-4xl font-display font-bold mb-2">
-                    Welcome back, <span className="gradient-text">John</span>!
+                    Welcome back, <span className="gradient-text">{user?.username || 'Engineer'}</span>!
                 </h1>
                 <p className="text-slate-400">Continue your engineering journey where you left off.</p>
             </motion.div>

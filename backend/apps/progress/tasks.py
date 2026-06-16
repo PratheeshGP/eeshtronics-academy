@@ -2,6 +2,7 @@
 Celery tasks for progress tracking and validation.
 """
 from celery import shared_task
+from django.utils import timezone
 import logging
 
 logger = logging.getLogger(__name__)

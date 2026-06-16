@@ -8,11 +8,13 @@ import {
     Trophy,
     Users,
     Settings,
-    ChevronRight
+    ChevronRight,
+    LogOut
 } from 'lucide-react';
+import { useAuth } from '../../contexts/AuthContext';
 
 const navigation = [
-    { name: 'Home', href: '/', icon: Home },
+    { name: 'Home', href: '/dashboard', icon: Home },
     { name: 'Playground', href: '/playground', icon: Zap },
     { name: 'Missions', href: '/missions', icon: Trophy },
     { name: 'Knowledge Base', href: '/knowledge', icon: BookOpen },
@@ -22,6 +24,17 @@ const navigation = [
 
 export const Sidebar: React.FC = () => {
     const location = useLocation();
+    const { user, logout } = useAuth();
+
+    const getInitials = (name: string) => {
+        if (!name) return 'U';
+        return name
+            .split(' ')
+            .map((n) => n[0])
+            .join('')
+            .slice(0, 2)
+            .toUpperCase();
+    };
 
     return (
         <div className="w-72 h-screen glass border-r border-white/10 flex flex-col">
@@ -35,8 +48,8 @@ export const Sidebar: React.FC = () => {
                         <Zap className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                        <h1 className="text-xl font-display font-bold gradient-text">EngineerLab</h1>
-                        <p className="text-xs text-slate-400">Interactive Playground</p>
+                        <h1 className="text-xl font-display font-bold gradient-text">Eeshtronics</h1>
+                        <p className="text-xs text-slate-400">Academy Playground</p>
                     </div>
                 </motion.div>
             </div>
@@ -73,19 +86,28 @@ export const Sidebar: React.FC = () => {
                 })}
             </nav>
 
-            <div className="p-4 border-t border-white/10">
-                <div className="glass rounded-xl p-4">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full flex items-center justify-center text-white font-bold">
-                            JD
+            {user && (
+                <div className="p-4 border-t border-white/10">
+                    <div className="glass rounded-xl p-4 flex flex-col gap-3">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full flex items-center justify-center text-white font-bold">
+                                {getInitials(user.username)}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <p className="text-sm font-semibold text-white truncate">{user.username}</p>
+                                <p className="text-xs text-slate-400">Level {user.level || 1} Engineer</p>
+                            </div>
                         </div>
-                        <div className="flex-1">
-                            <p className="text-sm font-semibold text-white">John Doe</p>
-                            <p className="text-xs text-slate-400">Level 5 Engineer</p>
-                        </div>
+                        <button
+                            onClick={logout}
+                            className="flex items-center justify-center gap-2 w-full py-2 px-3 rounded-lg text-xs font-medium text-red-400 hover:text-white hover:bg-red-500/20 border border-red-500/20 hover:border-red-500/50 transition-all duration-300"
+                        >
+                            <LogOut className="w-3.5 h-3.5" />
+                            Log Out
+                        </button>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };

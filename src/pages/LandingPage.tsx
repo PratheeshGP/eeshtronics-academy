@@ -160,7 +160,7 @@ export const LandingPage: React.FC = () => {
                                 <span className="gradient-text"> Engineering Journey?</span>
                             </h2>
                             <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
-                                Join thousands of engineers who are already mastering their craft with EngineerLab.
+                                Join thousands of engineers who are already mastering their craft with Eeshtronics Academy.
                             </p>
                             <Link to="/dashboard">
                                 <Button size="lg" variant="primary">

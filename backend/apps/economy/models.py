@@ -27,7 +27,7 @@ class EtherTransaction(TimeStampedModel):
     module = models.ForeignKey('modules.Module', on_delete=models.SET_NULL, null=True, blank=True)
     
     # Balance after transaction
-    balance_after = models.DecimalField(max_digits=10, decimal_places=2)
+    balance_after = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     
     class Meta:
         ordering = ['-created_at']
@@ -65,7 +65,7 @@ class ClanTransaction(TimeStampedModel):
     description = models.TextField()
     
     # Balance after transaction
-    clan_balance_after = models.DecimalField(max_digits=12, decimal_places=2)
+    clan_balance_after = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     
     class Meta:
         ordering = ['-created_at']
