@@ -53,20 +53,20 @@ export default function LoginPage() {
                 className="relative z-10 w-full max-w-md p-8"
             >
                 {/* Logo and Branding */}
-                <div className="text-center mb-8">
+                <div className="text-center mb-4">
                     <img
                         src="/eeshtronics_academy_logo.png"
                         alt="Eeshtronics Academy"
-                        className="w-20 h-20 mx-auto mb-4 animate-float-medium"
+                        className="w-12 h-12 mx-auto mb-2 animate-float-medium"
                     />
-                    <h1 className="text-4xl font-extrabold mb-1" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                        <span className="text-[#ff007f] drop-shadow-[0_0_10px_rgba(255,0,127,0.4)]">
+                    <h1 className="text-3xl font-extrabold mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                        <span className="text-[#ff007f] drop-shadow-[0_0_8px_rgba(255,0,127,0.4)]">
                             EESHTRONICS
                         </span>
                         <br />
-                        <span className="text-white text-xl tracking-[0.25em] font-light">ACADEMY</span>
+                        <span className="text-white text-base tracking-[0.25em] font-light">ACADEMY</span>
                     </h1>
-                    <p className="text-slate-400 text-sm mt-2">
+                    <p className="text-slate-400 text-xs mt-1">
                         {isLogin ? 'Welcome back, Engineer!' : 'Start your VLSI learning journey'}
                     </p>
                 </div>
