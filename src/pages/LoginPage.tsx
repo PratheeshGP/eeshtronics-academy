@@ -54,11 +54,6 @@ export default function LoginPage() {
             >
                 {/* Logo and Branding */}
                 <div className="text-center mb-4">
-                    <img
-                        src="/eeshtronics_academy_logo.png"
-                        alt="Eeshtronics Academy"
-                        className="w-12 h-12 mx-auto mb-2 animate-float-medium"
-                    />
                     <h1 className="text-3xl font-extrabold mb-0.5" style={{ fontFamily: 'Outfit, sans-serif' }}>
                         <span className="text-[#ff007f] drop-shadow-[0_0_8px_rgba(255,0,127,0.4)]">
                             EESHTRONICS
