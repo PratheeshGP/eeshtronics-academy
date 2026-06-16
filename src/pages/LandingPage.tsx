@@ -10,25 +10,25 @@ export const LandingPage: React.FC = () => {
             icon: Zap,
             title: 'Interactive Playgrounds',
             description: 'Hands-on learning with real-time VLSI, Digital Electronics, and Embedded Systems simulations.',
-            color: 'from-primary-500 to-primary-600',
+            color: 'from-[#ff007f] to-purple-600 shadow-md shadow-[#ff007f]/20',
         },
         {
             icon: Trophy,
             title: 'Mission-Based Learning',
             description: 'Progress through structured missions designed to build your skills systematically.',
-            color: 'from-secondary-500 to-secondary-600',
+            color: 'from-purple-500 to-fuchsia-600 shadow-md shadow-purple-500/20',
         },
         {
             icon: Sparkles,
             title: 'AI Mentor',
             description: 'Get personalized guidance and instant feedback from our advanced AI teaching assistant.',
-            color: 'from-accent-500 to-accent-600',
+            color: 'from-fuchsia-500 to-pink-600 shadow-md shadow-fuchsia-500/20',
         },
         {
             icon: Users,
             title: 'Clan System',
             description: 'Collaborate with peers, share knowledge, and compete in engineering challenges.',
-            color: 'from-purple-500 to-purple-600',
+            color: 'from-pink-600 to-purple-700 shadow-md shadow-pink-600/20',
         },
     ];
 
@@ -38,9 +38,9 @@ export const LandingPage: React.FC = () => {
             <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
                 {/* Animated Background */}
                 <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute w-96 h-96 bg-primary-500/20 rounded-full blur-3xl -top-48 -left-48 animate-pulse"></div>
-                    <div className="absolute w-96 h-96 bg-secondary-500/20 rounded-full blur-3xl -bottom-48 -right-48 animate-pulse" style={{ animationDelay: '1s' }}></div>
-                    <div className="absolute w-96 h-96 bg-accent-500/20 rounded-full blur-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" style={{ animationDelay: '2s' }}></div>
+                    <div className="absolute w-96 h-96 bg-[#ff007f]/8 rounded-full blur-3xl -top-48 -left-48 animate-pulse"></div>
+                    <div className="absolute w-96 h-96 bg-purple-600/8 rounded-full blur-3xl -bottom-48 -right-48 animate-pulse" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute w-96 h-96 bg-fuchsia-600/8 rounded-full blur-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" style={{ animationDelay: '2s' }}></div>
                 </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-8 text-center">
@@ -49,15 +49,15 @@ export const LandingPage: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6">
-                            <Sparkles className="w-4 h-4 text-accent-400" />
+                        <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-6 border-white/5">
+                            <Sparkles className="w-4 h-4 text-purple-400" />
                             <span className="text-sm text-slate-300">Powered by Advanced AI</span>
                         </div>
 
                         <h1 className="text-7xl md:text-8xl font-display font-black mb-6 leading-tight">
                             Master Engineering
                             <br />
-                            <span className="gradient-text animate-gradient bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400">
+                            <span className="gradient-text animate-gradient bg-gradient-to-r from-[#ff007f] via-purple-500 to-fuchsia-500">
                                 The Fun Way
                             </span>
                         </h1>
@@ -129,7 +129,7 @@ export const LandingPage: React.FC = () => {
                                 whileHover={{ y: -10 }}
                                 className="glass rounded-3xl p-8 glass-hover border border-white/10"
                             >
-                                <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg`}>
+                                <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-full flex items-center justify-center mb-6 shadow-lg`}>
                                     <feature.icon className="w-8 h-8 text-white" />
                                 </div>
                                 <h3 className="text-2xl font-display font-bold mb-4 text-white">

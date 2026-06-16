@@ -39,9 +39,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'username', 'email', 'bio', 'avatar',
             'xp_points', 'level', 'ether_balance', 'streak_count',
-            'clan', 'clan_name', 'created_at'
+            'clan', 'clan_name', 'is_staff', 'created_at'
         )
-        read_only_fields = ('xp_points', 'level', 'ether_balance', 'created_at')
+        read_only_fields = ('xp_points', 'level', 'ether_balance', 'is_staff', 'created_at')
 
 
 class ClanSerializer(serializers.ModelSerializer):

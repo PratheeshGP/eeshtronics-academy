@@ -8,10 +8,10 @@ export const Dashboard: React.FC = () => {
     const { user } = useAuth();
 
     const stats = [
-        { label: 'Current Level', value: user?.level?.toString() || '1', icon: Award, color: 'text-primary-400' },
-        { label: 'XP Points', value: user?.xp_points?.toLocaleString() || '0', icon: TrendingUp, color: 'text-accent-400' },
-        { label: 'Hours Practiced', value: '48', icon: Clock, color: 'text-secondary-400' },
-        { label: 'Ether Balance', value: user?.ether_balance?.toLocaleString() || '0', icon: Zap, color: 'text-yellow-400' },
+        { label: 'Current Level', value: user?.level?.toString() || '1', icon: Award, color: 'text-[#ff007f]' },
+        { label: 'XP Points', value: user?.xp_points?.toLocaleString() || '0', icon: TrendingUp, color: 'text-purple-400' },
+        { label: 'Hours Practiced', value: '48', icon: Clock, color: 'text-slate-400' },
+        { label: 'Ether Balance', value: user?.ether_balance?.toLocaleString() || '0', icon: Zap, color: 'text-pink-300' },
     ];
 
     const recentMissions = [
@@ -76,12 +76,12 @@ export const Dashboard: React.FC = () => {
                                             {mission.status.replace('-', ' ')}
                                         </Badge>
                                     </div>
-                                    <div className="w-full bg-slate-800 rounded-full h-2">
+                                    <div className="w-full bg-slate-900 rounded-full h-2">
                                         <motion.div
                                             initial={{ width: 0 }}
                                             animate={{ width: `${mission.progress}%` }}
                                             transition={{ delay: 0.5 + index * 0.1, duration: 0.8 }}
-                                            className="bg-gradient-to-r from-primary-500 to-secondary-500 h-2 rounded-full"
+                                            className="bg-gradient-to-r from-[#ff007f] to-purple-500 h-2 rounded-full shadow-[0_0_8px_rgba(255,0,127,0.3)]"
                                         />
                                     </div>
                                 </div>
@@ -102,9 +102,9 @@ export const Dashboard: React.FC = () => {
             >
                 <h2 className="text-2xl font-display font-bold mb-6">Quick Actions</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <Card className="border border-white/10 cursor-pointer">
+                    <Card className="border border-white/10 cursor-pointer rounded-3xl">
                         <div className="text-center">
-                            <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <div className="w-16 h-16 bg-gradient-to-br from-[#ff007f] to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-[#ff007f]/20">
                                 <Zap className="w-8 h-8 text-white" />
                             </div>
                             <h3 className="text-lg font-semibold text-white mb-2">Enter Playground</h3>
@@ -112,9 +112,9 @@ export const Dashboard: React.FC = () => {
                         </div>
                     </Card>
 
-                    <Card className="border border-white/10 cursor-pointer">
+                    <Card className="border border-white/10 cursor-pointer rounded-3xl">
                         <div className="text-center">
-                            <div className="w-16 h-16 bg-gradient-to-br from-secondary-500 to-secondary-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-fuchsia-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/20">
                                 <Award className="w-8 h-8 text-white" />
                             </div>
                             <h3 className="text-lg font-semibold text-white mb-2">Browse Missions</h3>
@@ -122,9 +122,9 @@ export const Dashboard: React.FC = () => {
                         </div>
                     </Card>
 
-                    <Card className="border border-white/10 cursor-pointer">
+                    <Card className="border border-white/10 cursor-pointer rounded-3xl">
                         <div className="text-center">
-                            <div className="w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                            <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-cyan-500/20">
                                 <TrendingUp className="w-8 h-8 text-white" />
                             </div>
                             <h3 className="text-lg font-semibold text-white mb-2">View Progress</h3>

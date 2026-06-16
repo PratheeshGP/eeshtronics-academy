@@ -10,9 +10,9 @@ interface CardProps {
 export const Card: React.FC<CardProps> = ({ children, className = '', hover = true }) => {
     return (
         <motion.div
-            whileHover={hover ? { y: -5, scale: 1.02 } : {}}
+            whileHover={hover ? { y: -5, scale: 1.01 } : {}}
             transition={{ duration: 0.3 }}
-            className={`glass rounded-2xl p-6 ${hover ? 'glass-hover' : ''} ${className}`}
+            className={`glass rounded-3xl p-6 ${hover ? 'glass-hover' : ''} ${className}`}
         >
             {children}
         </motion.div>
@@ -31,10 +31,10 @@ export const Badge: React.FC<BadgeProps> = ({
     className = ''
 }) => {
     const variantStyles = {
-        primary: 'bg-primary-500/20 text-primary-300 border-primary-500/30',
-        secondary: 'bg-secondary-500/20 text-secondary-300 border-secondary-500/30',
-        accent: 'bg-accent-500/20 text-accent-300 border-accent-500/30',
-        default: 'bg-slate-700/50 text-slate-300 border-slate-600/50',
+        primary: 'bg-pink-500/15 text-pink-400 border-pink-500/25',
+        secondary: 'bg-purple-500/15 text-purple-400 border-purple-500/25',
+        accent: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/25',
+        default: 'bg-slate-800/60 text-slate-300 border-slate-700/60',
     };
 
     return (

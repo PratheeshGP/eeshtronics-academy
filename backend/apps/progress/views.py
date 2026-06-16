@@ -1,10 +1,13 @@
 from rest_framework import generics, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
-from .models import MissionProgress, UserStreak, UserAchievement
-from .serializers import MissionProgressSerializer, UserStreakSerializer, UserAchievementSerializer
+from .models import MissionProgress, UserStreak, UserAchievement, RequirementTracker
+from .serializers import (
+    MissionProgressSerializer, UserStreakSerializer, 
+    UserAchievementSerializer, RequirementTrackerSerializer
+)
 
 
 @api_view(['POST'])
@@ -115,3 +118,56 @@ def my_achievements(request):
     achievements = UserAchievement.objects.filter(user=request.user)
     serializer = UserAchievementSerializer(achievements, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def requirements_list_create(request):
+    """
+    List user requirements (or all if admin) or create a new one.
+    """
+    if request.method == 'GET':
+        if request.user.is_staff:
+            requirements = RequirementTracker.objects.all()
+        else:
+            requirements = RequirementTracker.objects.filter(user=request.user)
+        serializer = RequirementTrackerSerializer(requirements, many=True)
+        return Response(serializer.data)
+        
+    elif request.method == 'POST':
+        serializer = RequirementTrackerSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PATCH', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def requirement_detail_update(request, pk):
+    """
+    Update (admin) or delete (user/admin) a requirement upload.
+    """
+    try:
+        requirement = RequirementTracker.objects.get(pk=pk)
+    except RequirementTracker.DoesNotExist:
+        return Response({'error': 'Requirement not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+    if requirement.user != request.user and not request.user.is_staff:
+        return Response({'error': 'Unauthorized'}, status=status.HTTP_403_FORBIDDEN)
+        
+    if request.method == 'DELETE':
+        requirement.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+        
+    elif request.method == 'PATCH':
+        serializer = RequirementTrackerSerializer(requirement, data=request.data, partial=True)
+        if serializer.is_valid():
+            new_status = request.data.get('status')
+            if new_status == 'COMPLETED' and not requirement.completed_at:
+                # Set completed_at timestamp
+                serializer.save(completed_at=timezone.now())
+            else:
+                serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

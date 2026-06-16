@@ -5,6 +5,7 @@ import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { LandingPage } from './pages/LandingPage';
 import { Dashboard } from './pages/Dashboard';
 import LoginPage from './pages/LoginPage';
+import RequirementsTracker from './pages/RequirementsTracker';
 import { AppLayout } from './components/layout/AppLayout';
 import './index.css';
 
@@ -19,6 +20,13 @@ const App: React.FC = () => {
             <ProtectedRoute>
               <AppLayout>
                 <Dashboard />
+              </AppLayout>
+            </ProtectedRoute>
+          } />
+          <Route path="/requirements" element={
+            <ProtectedRoute>
+              <AppLayout>
+                <RequirementsTracker />
               </AppLayout>
             </ProtectedRoute>
           } />

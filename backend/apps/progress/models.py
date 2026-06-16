@@ -137,3 +137,29 @@ class UserAchievement(TimeStampedModel):
     
     def __str__(self):
         return f"{self.user.username} - {self.achievement.name}"
+
+
+class RequirementTracker(TimeStampedModel):
+    """
+    Model for tracking user-submitted files/requirements.
+    """
+    STATUS_CHOICES = [
+        ('PENDING', 'Pending Review'),
+        ('IN_PROGRESS', 'Under Review'),
+        ('COMPLETED', 'Completed'),
+        ('REJECTED', 'Rejected'),
+    ]
+
+    user = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='requirements')
+    title = models.CharField(max_length=200, help_text="What requirement/file is being uploaded")
+    description = models.TextField(blank=True, help_text="Additional details/requirements description")
+    file = models.FileField(upload_to='requirements/', help_text="Uploaded document or artifact")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
+    admin_notes = models.TextField(blank=True, help_text="Feedback or progress notes from administrator")
+    completed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.title} ({self.status})"

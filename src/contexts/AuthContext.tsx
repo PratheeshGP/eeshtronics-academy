@@ -7,6 +7,7 @@ interface User {
     level: number;
     xp_points: number;
     ether_balance: number;
+    is_staff: boolean;
 }
 
 interface AuthContextType {

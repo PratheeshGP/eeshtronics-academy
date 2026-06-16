@@ -18,7 +18,7 @@ export const Navbar: React.FC = () => {
     };
 
     return (
-        <div className="h-16 glass border-b border-white/10 flex items-center justify-between px-8 relative">
+        <div className="h-16 glass border-b border-[#ff007f]/10 flex items-center justify-between px-8 relative">
             <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -29,7 +29,7 @@ export const Navbar: React.FC = () => {
                     <input
                         type="text"
                         placeholder="Search missions, topics, or ask AI mentor..."
-                        className="w-full pl-12 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-slate-200 placeholder-slate-500 focus:outline-none focus:border-primary-500/50 focus:bg-white/10 transition-all"
+                        className="w-full pl-12 pr-4 py-2.5 bg-slate-950/40 border border-white/10 rounded-full text-slate-200 placeholder-slate-500 focus:outline-none focus:border-[#ff007f]/50 focus:bg-slate-950/60 transition-all"
                     />
                 </div>
             </motion.div>
@@ -39,22 +39,22 @@ export const Navbar: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 className="flex items-center gap-4"
             >
-                <button className="glass glass-hover p-2.5 rounded-xl relative">
-                    <Sparkles className="w-5 h-5 text-accent-400" />
-                    <span className="absolute -top-1 -right-1 w-3 h-3 bg-accent-500 rounded-full animate-pulse"></span>
+                <button className="glass glass-hover p-2.5 rounded-full relative border-white/10 hover:border-[#ff007f]/30">
+                    <Sparkles className="w-5 h-5 text-purple-400" />
+                    <span className="absolute -top-1 -right-1 w-3 h-3 bg-[#ff007f] rounded-full animate-pulse shadow-[0_0_8px_#ff007f]"></span>
                 </button>
-                <button className="glass glass-hover p-2.5 rounded-xl relative">
+                <button className="glass glass-hover p-2.5 rounded-full relative border-white/10 hover:border-[#ff007f]/30">
                     <Bell className="w-5 h-5 text-slate-400" />
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary-500 rounded-full"></span>
+                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-[#ff007f] rounded-full shadow-[0_0_5px_#ff007f]"></span>
                 </button>
 
                 {user && (
                     <div className="relative">
                         <button
                             onClick={() => setShowDropdown(!showDropdown)}
-                            className="flex items-center gap-2 p-1.5 rounded-xl hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-white/10"
+                            className="flex items-center gap-2 p-1.5 rounded-full hover:bg-white/5 transition-all duration-300 border border-transparent hover:border-[#ff007f]/10"
                         >
-                            <div className="w-8 h-8 bg-gradient-to-br from-accent-500 to-accent-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                            <div className="w-8 h-8 bg-gradient-to-br from-[#ff007f] to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md shadow-[#ff007f]/10">
                                 {getInitials(user.username)}
                             </div>
                             <span className="text-sm font-medium text-slate-200 hidden sm:block max-w-[120px] truncate">
@@ -70,7 +70,7 @@ export const Navbar: React.FC = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: 10 }}
-                                        className="absolute right-0 mt-2 w-48 bg-slate-800 border border-white/10 rounded-xl shadow-2xl py-2 z-20"
+                                        className="absolute right-0 mt-2 w-48 bg-[#0e0e12]/95 border border-[#ff007f]/20 rounded-2xl shadow-2xl py-2 z-20"
                                     >
                                         <div className="px-4 py-2 border-b border-white/5">
                                             <p className="text-xs text-slate-400">Signed in as</p>
@@ -81,7 +81,7 @@ export const Navbar: React.FC = () => {
                                                 setShowDropdown(false);
                                                 logout();
                                             }}
-                                            className="flex items-center gap-2 w-full text-left px-4 py-2.5 text-sm text-red-400 hover:bg-white/5 transition-colors"
+                                            className="flex items-center gap-2 w-full text-left px-4 py-2.5 text-sm text-[#ff007f] hover:bg-[#ff007f]/10 transition-colors"
                                         >
                                             <LogOut className="w-4 h-4" />
                                             Log Out
